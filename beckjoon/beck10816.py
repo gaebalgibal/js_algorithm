@@ -2,23 +2,25 @@
 # 정수 M개가 주어졌을 때, 이 수가 적혀있는 숫자 카드를 상근이가 몇 개 가지고 있는지 구하는 프로그램을 작성하시오.
 import sys
 
-def binarySearch(data, x, start, end):
-    if start < end:
-        mid = (start + end) // 2
-        if data[mid] == x:
-            return count.get(x)
-        elif data[mid] > x:
-            end = mid - 1
-        else:
-            start = mid + 1
-        return binarySearch(data, x, start, end)
-    else:
-        return 0
+# def binarySearch(data, x, start, end):
+#     if start < end:
+#         mid = (start + end) // 2
+#         if data[mid] == x:
+#             return count.get(x)
+#         elif data[mid] > x:
+#             end = mid - 1
+#         else:
+#             start = mid + 1
+#         return binarySearch(data, x, start, end)
+#     else:
+#         return 0
 
 N = int(sys.stdin.readline())
-sanggeun = sorted(list(map(int, sys.stdin.readline().strip().split())))
+sanggeun = list(map(int, sys.stdin.readline().strip().split()))
 M = int(sys.stdin.readline())
 M_s = list(map(int, sys.stdin.readline().strip().split()))
+
+sanggeun.sort()
 
 count = {}
 for card in sanggeun:
@@ -28,4 +30,8 @@ for card in sanggeun:
         count[card] = 1
 
 for x in M_s:
-    print(binarySearch(sanggeun, x, 0, len(sanggeun)-1), end=' ')
+    if x in count:
+        print(count[x], end=' ')
+    else:
+        print('0', end=' ')
+    # print(binarySearch(sanggeun, x, 0, len(sanggeun)-1), end=' ')
